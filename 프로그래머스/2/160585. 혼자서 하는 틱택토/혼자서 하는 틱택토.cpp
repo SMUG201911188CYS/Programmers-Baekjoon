@@ -122,12 +122,6 @@ int solution(vector<string> board) {
             }
         }
     }
-    
-    if(FindBingo('X', board) && FindBingo('O', board))
-    {
-        answer = 0;
-        return answer;
-    }
-    
+
     return answer;
 }
