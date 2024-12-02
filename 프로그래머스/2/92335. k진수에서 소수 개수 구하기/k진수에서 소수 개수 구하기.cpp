@@ -4,27 +4,24 @@
 
 using namespace std;
 
-inline int Pow(int Num)
-{
-    return Num * Num;
-}
+int answer;
 
-inline bool PrimeCheck(long Num)
+inline void PrimeCheck(long Num)
 {
     if(Num == 1)
     {
-        return false;
+        return;
     }
     
     for(long i = 2; i * i <= Num; i++)
     {
         if(Num % i == 0)
         {
-            return false;
+            return;
         }
     }
     
-    return true;
+    answer += 1;
 }
 
 void FindDigit(const int n, const int k, int cnt, vector<int>& Arr)
@@ -41,49 +38,37 @@ void FindDigit(const int n, const int k, int cnt, vector<int>& Arr)
 }
 
 int solution(int n, int k) {
-    int answer = 0;
     vector<int> Arr;
     string List = "";
+    answer = 0;
     
     FindDigit(n, k, 0, Arr);
     
-    int Point1 = 0;
-    int Point2 = 0;
     int Size = Arr.size();
 
-    while(true)
+    for(int Point = 0; Point <= Size; ++Point)
     {
-        if(Point1 >= Size || Point2 >= Size)
+        if(Point == Size)
         {
             if(List != "")
             {
-                if(PrimeCheck(stol(List)))
-                {
-                    answer += 1;
-                }
+                PrimeCheck(stol(List));
             }
             break;
         }
         
-        if(Arr[Point2] != 0)
+        if(Arr[Point] != 0)
         {
-            List += Arr[Point2] + '0';
+            List += Arr[Point] + '0';
         }
         else
         {
             if(List != "")
             {
-                if(PrimeCheck(stol(List)))
-                {
-                    answer += 1;
-                }
+                PrimeCheck(stol(List));
             }
             List = "";
-            Point1 = Point2;
         }
-        
-        Point2 += 1;
     }
-    
     return answer;
 }
