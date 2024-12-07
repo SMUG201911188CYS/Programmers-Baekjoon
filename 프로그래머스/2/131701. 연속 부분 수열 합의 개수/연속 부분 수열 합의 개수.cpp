@@ -24,7 +24,6 @@ int solution(vector<int> elements) {
             DP[i][j] = DP[i-1][j] + DP[0][k];
             List.insert(DP[i][j]);
         }
-        cout << '\n';
     }
     
     return List.size();
