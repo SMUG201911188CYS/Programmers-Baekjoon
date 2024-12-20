@@ -13,7 +13,7 @@ int solution(int cacheSize, vector<string> cities) {
     int answer = 0;
     
     list<string> Caches;
-    unordered_map<string, list<string>::iterator> CacheAddress;
+    //unordered_map<string, list<string>::iterator> CacheAddress;
     
     if(cacheSize == 0)
     {
@@ -25,13 +25,25 @@ int solution(int cacheSize, vector<string> cities) {
     {
         transform(City.begin(), City.end(), City.begin(), ::tolower);
         
-        if(CacheAddress.find(City) == CacheAddress.end())
+        bool Flag = false;
+        list<string>::iterator CacheIt = Caches.begin();
+        for(; CacheIt != Caches.end(); ++CacheIt)
+        {
+            if(City == *CacheIt)
+            {
+                Flag = true;
+                Caches.erase(CacheIt);
+                break;
+            }
+        }
+        
+        if(!Flag)
         {
             //cout << "Not Found In Cache." << '\n';
             answer += 5;
             if(Caches.size() == cacheSize)
             {
-                CacheAddress.erase(Caches.back());
+                //CacheAddress.erase(Caches.back());
                 Caches.pop_back();
             }
         }
@@ -39,11 +51,11 @@ int solution(int cacheSize, vector<string> cities) {
         {
             answer += 1;
             //cout << "Find In Cache." << '\n';
-            Caches.erase(CacheAddress[City]);
+            //Caches.erase(CacheAddress[City]);
         }
         
         Caches.push_front(City);
-        CacheAddress[City] = Caches.begin();
+        //CacheAddress[City] = Caches.begin();
         
         /*for(const auto& Cache : Caches)
         {
