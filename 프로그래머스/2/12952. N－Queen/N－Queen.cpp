@@ -22,7 +22,7 @@ void UpdateVec(vector<vector<bool>>& IsCanPutQueen, int PosX, int PosY, int Upda
     }
 }
 
-void PutQueen(int n, vector<vector<bool>> IsCanPutQueen, int Depth)
+void PutQueen(int n, vector<vector<bool>>& IsCanPutQueen, int Depth)
 {
     if(n == Depth)
     {
