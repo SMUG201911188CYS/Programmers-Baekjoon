@@ -34,6 +34,10 @@ int solution(vector<int> scoville, int K) {
             PQ.push(FirstLessScovilleFood + (SecondLessScovileFood * 2));
             answer += 1;
         }
+        else
+        {
+            return answer;
+        }
     }
     return answer;
 }
